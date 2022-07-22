@@ -1,0 +1,25 @@
+For mongoDB side
+
+login api: POST https://foo-task-app.herokuapp.com/users/login
+body:
+{
+ "username":"user104",
+ "password":"Apple@123"
+}
+
+creation api: POST https://foo-task-app.herokuapp.com/users
+body:
+{
+    "id": "1",
+    "name": "Jacky",
+    "username": "user101",
+    "password": "Apple@123"
+}
+
+currency exchange rates api: GET https://foo-task-app.herokuapp.com/currency_ex_rates
+
+currency table (get your currencies): GET https://foo-task-app.herokuapp.com/my_currencies
+
+wallets return: GET https://foo-task-app.herokuapp.com/my_wallets
+
+delete user and remove all wallets/currencies: DELETE https://foo-task-app.herokuapp.com/users/me
