@@ -8,7 +8,7 @@ const TransactionForm = ({userID,walletID}) => {
     const [creditAmount , setCreditAmount] = useState(0);
     const [description, setDescription] = useState('');
     const [debitCurrency, setDebitCurrency] =useState('');
-    const [currenciesAvailable,setCurrenciesAvailable] = useState({});
+    const [currencies,setCurrencies] = useState([])
 
 
 
@@ -44,10 +44,11 @@ useEffect(()=> {
             
 
             })
-            const filteredByWalletID = data.filter((element)=>element.wallet_id===1)
-            const currencies = filteredByWalletID.map(element=>(element.currency))
-            setCurrenciesAvailable(currencies)
+            const filteredByWalletID =  await data.filter((element)=>element.wallet_id===1)
+            const currencies = await filteredByWalletID.map(element=>(element.currency))
+            setCurrencies(currencies)
             console.log(currencies)
+            
     
 
 
@@ -120,7 +121,7 @@ setDebitCurrency('');
         <div className="">
             <label htmlFor='debit_currency'>Enter Debit Currency: </label>
             <select onChange={(e)=>setDebitCurrency(e.target.value)}>
-                {currenciesAvailable.map(list => <option key={list} value={list}>{list}</option>)}
+                {currencies.map(list => <option key={list} value={list}>{list}</option>)}
             </select>
 
             {/* <input name='debit_currency' value="SGD" onChange={(e)=>setDebitCurrency(e.target.value)}></input> */}
