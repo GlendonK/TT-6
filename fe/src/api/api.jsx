@@ -119,3 +119,27 @@ export function getCurrencyExchangeRate() {
     },
   ];
 }
+
+
+export async function sendTransaction(debitCurrency, creditCurrency, debitAmount, creditAmount, description, walletId) {
+    let res 
+    await fetch("https://a247-101-78-68-212.ap.ngrok.io/seed/transaction", {
+        method: 'POST',
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify(
+            {
+                "debitCurrency":debitCurrency,
+                "creditCurrency":creditCurrency,
+                "debitAmount":debitAmount,
+                "creditAmount":creditAmount,
+                "description":description,
+                "walletId":walletId
+                }
+        )
+    }).then(response => response.json()).then((r)=>{
+        console.log(r)
+        res = r.status})
+
+    return res
+}
+
