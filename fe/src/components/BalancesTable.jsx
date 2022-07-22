@@ -11,12 +11,19 @@ export function BalancesTable() {
       "amount": 0,
     }
   ]);
+
+  const api = async () => {
+        setD(await getBalances())
+  }
+
   useEffect(()=>{
-    setD(getBalances())
+        api()
+        
+    return 
   },[])
   return (
     <div className="bg-white p-2">
-      <h1 className="text-6xl "> Table</h1>
+      <h1 className="text-6xl "> Wallet Balance</h1>
       <table className="table-fixed w-full">
         <thead>
           <tr className="border-black border-2">
@@ -35,6 +42,16 @@ export function BalancesTable() {
               </tr>
             );
           })}
+
+          {/* {d.forEach((each)=>{
+            return (
+                <tr className="border-black border-2" >
+                  <td className="">{each.id}</td>
+                  <td className="">{each.currency}</td>
+                  <td className="">{each.amount}</td>
+                </tr>
+              );
+          })} */}
         </tbody>
       </table>
     </div>

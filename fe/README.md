@@ -20,3 +20,5 @@ POST login(username, password) => returns { "id": 1, "username": "user101", "pas
 GET getExcahngeRates() => returns all the excahnge rates
 GET getBalance(username) => list of wallets : { "id": 1, "user_id": 1, "name": "Multi-Currency Account" }
 POST transaction(wallet_id, debit_currency, debit_amount, credit_currency, credit_amount, description)
+
+walletid debitC debitA creditA des
