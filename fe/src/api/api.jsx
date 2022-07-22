@@ -24,35 +24,35 @@ export function getExcahngeRates() {
 }
 
 export async function getBalances() {
-  //   return [
-  //     {
-  //       "id": 1,
-  //       "wallet_id": 1,
-  //       "currency": "SGD",
-  //       "amount": 4294.5,
-  //     },
-  //     {
-  //       "id": 2,
-  //       "wallet_id": 1,
-  //       "currency": "CAD",
-  //       "amount": 5687.65,
-  //     },
-  //   ];
-  let data = [];
-  await fetch("https://a247-101-78-68-212.ap.ngrok.io/seed/retrieve/currencyWallet", {
-    method: "POST",
-    headers: { Accept: "application/json", "Content-Type": "application/json" },
-    body: JSON.stringify({
-      userId: 1,
-    }),
-  })
-    .then((res) => res.json())
-    .then((d) => {
-      console.log(d.data);
-      data = d.data;
-    });
+    return [
+      {
+        "id": 1,
+        "wallet_id": 1,
+        "currency": "SGD",
+        "amount": 4294.5,
+      },
+      {
+        "id": 2,
+        "wallet_id": 1,
+        "currency": "CAD",
+        "amount": 5687.65,
+      },
+    ];
+//   let data = [];
+//   await fetch("https://a247-101-78-68-212.ap.ngrok.io/seed/retrieve/currencyWallet", {
+//     method: "POST",
+//     headers: { Accept: "application/json", "Content-Type": "application/json" },
+//     body: JSON.stringify({
+//       userId: 1,
+//     }),
+//   })
+//     .then((res) => res.json())
+//     .then((d) => {
+//       console.log(d.data);
+//       data = d.data;
+//     });
 
-  return await data;
+//   return await data;
 }
 
 export function getCurrencyExchangeRate() {
