@@ -3,6 +3,8 @@ const validator = require('validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const Task = require('./task')
+const Wallet_table = require('./wallet')
+const Curr_table = require('./curr_table')
 
 const userSchema = new mongoose.Schema({
     id:{type: String,},
@@ -85,7 +87,8 @@ userSchema.pre('save', async function (next) {
 userSchema.pre('remove' ,async function (next) {
     const user = this
     await Task.deleteMany({ owner: user._id})
-
+    await Wallet_table.deleteMany({user_id : user.id})
+    await Curr_table.deleteMany({wallet_id: user.id})
     next()
 })
 
