@@ -6,4 +6,6 @@ src/routers: Contains all the route method setups for each model object, uses th
 
 src/app.js: Running of all the relevant routers on the express server.  
 
-src/index.js: listening on the relevant port (port is taken from environment var in order to utilise heroku for deployment)
+src/index.js: listening on the relevant port (port is taken from environment var in order to utilise heroku for deployment)  
+
+API_details.txt: Describes the API endpoint routes avaliable to access via the relevant methods on the heroku server.
