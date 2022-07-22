@@ -33,7 +33,7 @@ public class SeedController {
     @Autowired
     ExchangeRateService exchangeRateService;
 
-    @PostMapping(value = "/retrieve/currencyWallet")
+    @GetMapping(value = "/retrieve/currencyWallet")
     public DbsGenericResponse<List<Currency>> retrieveCurrencyWallet(@RequestBody RetriveCurrencyWalletRequest retriveCurrencyWalletRequest) {
 
         List<Currency> response = retrieveWalletService.retrieveCurrencyWallet(retriveCurrencyWalletRequest);
