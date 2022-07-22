@@ -1,7 +1,9 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import { Table } from "./components/Table.jsx";
-import { Form } from "./components/Form.jsx";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Dashboard } from "./pages/Dashboard.jsx"
+import { Login } from "./pages/Login.jsx"
 
 function App() {
   useEffect(() => {
@@ -11,16 +13,13 @@ function App() {
   const [name, setName] = useState("");
 
   return (
-    <div className="flex flex-col h-screen bg-cyan-300 justify-evenly w-screen">
-      <header className="flex flex-row justify-around">
-        <h1 className="text-9xl ">SEED HACK 🐱</h1>
-      </header>
-
-      <div className="flex flex-col">
-        <Form></Form>
-        {/* <Table></Table> */}
-      </div>
-    </div>
+      <BrowserRouter>
+      <Routes>
+      <Route path='/' element={<Login/>}></Route>
+        <Route path='/dashboard' element={<Dashboard/>}></Route>
+      </Routes>
+      </BrowserRouter>
+      
   );
 }
 
