@@ -4,11 +4,17 @@ export function getApi() {
 }
 
 export function login(username, password) {
-  // fetch(URL+"/login").then(res => res.json()).then(console.log) // return true or false
-  console.log("LOGIN");
-  if (1 == 1) {
-    return true;
-  }
+  fetch("https://foo-task-app.herokuapp.com/users/login", {
+    method: 'POST',
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    body: JSON.stringify(
+        {
+            username:"user104",
+            password:"Apple@123"
+           }
+    )
+  }).then(res => res.json()).then(console.log) // return true or false
+  
 }
 
 export function getExcahngeRates() {
