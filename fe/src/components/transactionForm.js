@@ -7,11 +7,50 @@ const transactionForm = ({userID,walletID}) => {
     const [creditAmount , setCreditAmount] = useState(0)
     const [description, setDescription] = useState('')
     const [debitCurrency, setDebitCurrency] =useState('')
-    const [balance, setBalance] =useState(0)
+    const [debitBalance, setDebitBalance] =useState(0)
+    const [creditBalance, setCreditBalance] = useState(0)
+    const [currenciesAvailable,setCurrenciesAvailable] = useState({})
+
+
+
+const addTransaction = async (walletID,debitAmount,creditAmount,debitCurrency,debitCurrency)=>{
+
+}
+
+
+const updateBalance = async (userID,walletID,debitCurrency,creditCurrency,debitBalance,creditBalance)=>{
+
+
+}
+
+const getExchangeRate = async(creditCurrency,debitCurrency)=>{
+
+
+}
+
+const getCurrencies = async(walletID,userID) =>{
+
+    setCurrenciesAvailable()
+
+}
+
+const getWallet = async(userID) => {
+
+}
+
+
     
 const onSubmit=((e)=> {
-e.preventDefault()
-addTransaction()
+e.preventDefault();
+addTransaction(walletID,debitAmount,creditAmount,debitCurrency,debitCurrency);
+updateBalance(userID,walletID,debitCurrency,creditCurrency,debitBalance,creditBalance);
+setCreditCurrency('');
+setDebitAmount(0);
+setCreditAmount(0);
+setDescription('');
+setDebitCurrency('');
+setDebitBalance(0);
+setCreditBalance(0);
 
 }) 
 
@@ -22,7 +61,11 @@ addTransaction()
     <form className="" onSubmit={onSubmit}>
         <div className="">
             <label htmlFor='debit_currency'>Enter Debit Currency</label>
-            <input name='debit_currency' value={debitCurrency} onChange={(e)=>setDebitCurrency(e.target.value)}></input>
+            <select>
+                {Object.keys(currenciesAvailable).map(element => <option key={element} value={quotes[element]}>{element}</option>)}
+            </select>
+
+            {/* <input name='debit_currency' value={debitCurrency} onChange={(e)=>setDebitCurrency(e.target.value)}></input> */}
                 
         </div>
         <div className="">
