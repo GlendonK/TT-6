@@ -3,19 +3,16 @@ const validator = require('validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const Task = require('./task')
-// "id": 1,
-// "username": "user101",
-// "password": "123456",
-// "name": "Jacky"
+
 const userSchema = new mongoose.Schema({
-    id:{type: Number},
+    id:{type: String,},
     name: {type: String, required: true, trim: true},
-    username:{type: String, required: true, trim: true, lowercase:true, unique:true,
-        validate(value){
-        if(!validator.isEmail(value)){
-            throw new Error('Email is invalid')
-        }
-    } },
+    username:{type: String, required: true, trim: true, 
+        // validate(value){
+        // if(!validator.isEmail(value)){
+        //     throw new Error('Email is invalid')
+        // }
+    } ,
     password: {type: String, required: true, 
     validate(value){
         if(!validator.isStrongPassword(value,{minLength:7})){
@@ -60,8 +57,8 @@ userSchema.virtual('tasks', {
     foreignField:'owner'
 })
 
-userSchema.statics.findByCredentials = async (email,password) => {
-    const user = await User.findOne({email})
+userSchema.statics.findByCredentials = async (username,password) => {
+    const user = await User.findOne({username})
 
     if(!user){
         throw new Error('Unable to login')
