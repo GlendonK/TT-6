@@ -5,10 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class RetriveCurrencyWalletRequest {
-    private int userId;
+@AllArgsConstructor
+public class ConvertedRate {
+private String debitCurrency;
+private String creditCurrency;
+private BigDecimal amount;
 }

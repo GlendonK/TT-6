@@ -22,7 +22,6 @@ public class ExceptionHandler {
         dbsGenericResponse.setStatus(ResponseStatus.FAIL);
         dbsGenericResponse.setLocalizedMessage(ex.getLocalizedMessage());
         return new ResponseEntity<Object>(dbsGenericResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-//     return null;
 
     }
 }

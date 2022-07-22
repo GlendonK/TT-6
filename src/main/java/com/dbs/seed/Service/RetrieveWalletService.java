@@ -19,7 +19,7 @@ public class RetrieveWalletService {
     WalletRepository walletRepository;
 
     public List<Currency> retrieveCurrencyWallet(RetriveCurrencyWalletRequest retriveCurrencyWalletRequest) {
-int id = retriveCurrencyWalletRequest.getUserId();
+        int id = retriveCurrencyWalletRequest.getUserId();
 
         List<Wallet> listOfWallet = walletRepository.findAllByUserId(id);
         List<Currency> listOfCurrency = new ArrayList<>();
@@ -31,35 +31,8 @@ int id = retriveCurrencyWalletRequest.getUserId();
         }
         return listOfCurrency;
 
-//        User user = toUser(userRequest);
-//        if (userRepository.findById(user.getId()).isPresent()) {
-//            throw new UserExistException("User Existed");
-//        }
-//        return new ResponseEntity<User>(userRepository.save(toUser(userRequest)), HttpStatus.OK);
+
     }
 }
-//
-//    ;
-//
-//    public User toUser(UserRequest userRequest) {
-//        User user = User.builder().age(userRequest.getAge()).name(userRequest.getName()).build();
-//        return user;
-//    }
-//
-//    public ResponseEntity<User> getUser(int id) {
-//        User user;
-//        Optional<User> optionalUser = userRepository.findById(id);
-//        if (optionalUser.isPresent()) {
-//            user = optionalUser.get();
-//            return new ResponseEntity<User>(user, HttpStatus.OK);
-//        }
-//        throw new UserDoesNotException("User Does Not Exist");
-//    }
-//
-//    public ResponseEntity<List<User>> getUsers() {
-////        return new ResponseEntity<List<User>>(userRepository.findAll(), HttpStatus.OK);
-//        return new ResponseEntity<List<User>>(userRepository.findAll(), HttpStatus.OK);
-//
-//
-//    }
+
 

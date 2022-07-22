@@ -8,10 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
@@ -23,7 +20,7 @@ import java.sql.Timestamp;
 @Table(name = "transaction")
 public class Transaction {
     @Id
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     @Column(name = "wallet_id")

@@ -10,7 +10,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -28,7 +27,6 @@ public class Wallet {
     @Column(name = "name")
     @JsonProperty(value = "name")
     private String name;
-
 
 
 }
