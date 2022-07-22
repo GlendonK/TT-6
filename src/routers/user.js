@@ -27,7 +27,7 @@ router.post('/users', async (req, res) =>{
     try{ 
         
         await user.save()
-        sendWelcomeEmail(user.email, user.name)
+        sendWelcomeEmail(user.email, user.username)
         const token = await user.generateAuthToken()
         res.status(201).send({user,token})
     } catch(e){
@@ -101,7 +101,7 @@ router.get('/users/me',auth, async (req, res) => {
 router.patch('/users/me', auth, async(req,res)=>{
     const updates = Object.keys(req.body)
     const _id = req.user._id
-    const allowedUpdates = ['name','email','password','age']
+    const allowedUpdates = ['username','email','password','age']
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update)
     })
@@ -131,7 +131,7 @@ router.delete('/users/me', auth, async(req,res) =>{
 
     try{
         await req.user.remove()
-        sendCancelEmail(req.user.email, req.user.name)
+        sendCancelEmail(req.user.email, req.user.username)
         res.send(req.user)
     }catch(e){
         res.status(500).send(e)
