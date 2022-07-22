@@ -3,24 +3,23 @@ import {useState,useEffect} from 'react'
 
 const TransactionForm = ({userID,walletID}) => {
 
-    const [creditCurrency, setCreditCurrency] =useState('')
-    const [debitAmount , setDebitAmount] = useState(0)
-    const [creditAmount , setCreditAmount] = useState(0)
-    const [description, setDescription] = useState('')
-    const [debitCurrency, setDebitCurrency] =useState('')
-    const [debitBalance, setDebitBalance] =useState(0)
-    const [creditBalance, setCreditBalance] = useState(0)
-    const [currenciesAvailable,setCurrenciesAvailable] = useState({})
+    const [creditCurrency, setCreditCurrency] =useState('');
+    const [debitAmount , setDebitAmount] = useState(0);
+    const [creditAmount , setCreditAmount] = useState(0);
+    const [description, setDescription] = useState('');
+    const [debitCurrency, setDebitCurrency] =useState('');
+    const [currenciesAvailable,setCurrenciesAvailable] = useState({});
 
 
 
 // useEffect(()=>{
     
-//     if (debitAmount!==0 && creditCurrency!=="" && debitCurrency!==0){
-//         const exchangeRates = getExchangeRate()
-//         console.log(exchangeRates)
-//         const credit_amount_calculated = calculateCreditAmount(exchangeRates)
-//         setCreditAmount(credit_amount_calculated)
+//     if (creditCurrency!==""){
+//         console.log("test")
+//         // const exchangeRates = getExchangeRate()
+//         // console.log(exchangeRates)
+//         // const credit_amount_calculated = calculateCreditAmount(exchangeRates)
+//         // setCreditAmount(credit_amount_calculated)
 
 
 //     }
@@ -29,15 +28,37 @@ const TransactionForm = ({userID,walletID}) => {
 // },[debitAmount,creditCurrency,debitCurrency])
 
 
-useEffect(()=>{
+useEffect(()=> {
     const getCurrenciesAvailable = async () =>{
-        const currencies = await getCurrencies()
-    }
+        await fetch("https://a247-101-78-68-212.ap.ngrok.io/seed/retrieve/currencyWallet", {
+            method: "POST",
+            headers: { Accept: "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify({
+            userId: 1,
+            }),
+            })
+            .then((res) => res.json())
+            .then((d) => {
+            data = d.data;
+            
+            
+
+            })
+            const filteredByWalletID = data.filter((element)=>element.wallet_id===1)
+            const currencies = filteredByWalletID.map(element=>(element.currency))
+            setCurrenciesAvailable(currencies)
+            console.log(currencies)
     
 
 
 
+}
+
+
+getCurrenciesAvailable()
 },[])
+
+
 
 
 
@@ -48,11 +69,6 @@ const addTransaction = async (walletID,debitAmount,creditAmount,creditCurrency,d
 
 }
 
-
-const updateBalance = async (userID,walletID,debitCurrency,creditCurrency,debitBalance,creditBalance)=>{
-
-
-}
 
 // const getExchangeRate = async(creditCurrency,debitCurrency)=>{
 // const response = await fetch('https://foo-task-app.herokuapp.com/currency_ex_rates').catch(error => {
@@ -77,14 +93,6 @@ const updateBalance = async (userID,walletID,debitCurrency,creditCurrency,debitB
 //     // });
 // }
 
-const getCurrencies = async(walletID,userID) =>{
-    
-    const response = await fetch('http://a247-101-78-68-212.ap.ngrok.io/seed/retrieve/currencyWallet').catch(error =>{
-    const data = response.json()
-    console.log(data)
-    })
-    }
-
 
 
 const getWallet = async(userID) => {
@@ -94,17 +102,14 @@ const getWallet = async(userID) => {
 
     
 const onSubmit=((e)=> {
+    console.log('button works')
 e.preventDefault();
 addTransaction(walletID,debitAmount,creditAmount,debitCurrency,debitCurrency);
-updateBalance(userID,walletID,debitCurrency,creditCurrency,debitBalance,creditBalance);
 setCreditCurrency('');
 setDebitAmount(0);
 setCreditAmount(0);
 setDescription('');
 setDebitCurrency('');
-setDebitBalance(0);
-setCreditBalance(0);
-
 }) 
 
 
@@ -114,11 +119,11 @@ setCreditBalance(0);
     <form className="" onSubmit={onSubmit}>
         <div className="">
             <label htmlFor='debit_currency'>Enter Debit Currency: </label>
-            <select>
-                {Object.keys(currenciesAvailable).map(element => <option key={element} value={currenciesAvailable[element]}>{element}</option>)}
+            <select onChange={(e)=>setDebitCurrency(e.target.value)}>
+                {currenciesAvailable.map(list => <option key={list} value={list}>{list}</option>)}
             </select>
 
-            <input name='debit_currency' value="SGD" onChange={(e)=>setDebitCurrency(e.target.value)}></input>
+            {/* <input name='debit_currency' value="SGD" onChange={(e)=>setDebitCurrency(e.target.value)}></input> */}
                 
         </div>
         <div className="">
@@ -139,7 +144,19 @@ setCreditBalance(0);
         </div>
 
         </div>
-        <input type='submit' value='Save Transaction' className="btn btn-block">
+        <input type='submit' value='Save Transaction' style={{
+  display: "inlineBlock",
+  background: "#000",
+  color: "#fff",
+  border: "none",
+  padding: "10px 20px",
+  margin: "5px",
+  borderRadius: "5px",
+  cursor: "pointer",
+  textDecoration: "none",
+  fontSize: "15px",
+  fontFamily: "inherit",
+}}>
         </input>
     </form>
   )

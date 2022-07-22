@@ -2,6 +2,7 @@
 import { Balances } from "../components/Balances.jsx";
 
 import { CureencyExchangeRate } from "../components/CurrencyExchangeRate.jsx";
+import TransactionForm from "../components/TransactionForm.js";
 
 export function Dashboard() {
     return (
@@ -11,6 +12,7 @@ export function Dashboard() {
           <Balances/> 
           <CureencyExchangeRate/>
           <>Transacition Form</>
+          <TransactionForm></TransactionForm>
         </div>
       </div>
     )
