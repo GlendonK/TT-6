@@ -1,6 +1,6 @@
 import { Dashboard } from "../../src/pages/Dashboard.jsx"
 import { Outlet, Link } from "react-router-dom";
-
+import {login} from "../../src/api/api.jsx"
 import { useNavigate } from "react-router-dom";
 
 export function Form() {
@@ -14,6 +14,8 @@ export function Form() {
             onSubmit={() => {
               
               console.log("submit");
+              let valid = login()
+
               navigate("/dashboard")
             }}
           >
